@@ -51,6 +51,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'auth.admin' => \App\Http\Middleware\CheckAdmin::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -73,6 +74,7 @@ class Kernel extends HttpKernel
     protected $middlewarePriority = [
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \app\Http\Middleware\CheckAdmin::class,
         \App\Http\Middleware\Authenticate::class,
         \Illuminate\Routing\Middleware\ThrottleRequests::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,

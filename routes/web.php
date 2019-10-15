@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'HomeController@index')->name('index');
+Route::get('/login', 'HomeController@login')->name('login');
+Route::post('/actionLogin', 'HomeController@actionLogin')->name('actionLogin');
+Route::get('/notAuthorized', 'HomeController@notAuthorized')->name('notAuthorized');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/logout', 'HomeController@logout')->name('logout');
+    Route::get('/home', 'HomeController@home')->name('home');
 });
